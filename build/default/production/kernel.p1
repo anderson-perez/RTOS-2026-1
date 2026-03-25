@@ -1,6 +1,31 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F6189 `(v ~T0 @X0 0 tf ]
-[v F6192 `(v ~T0 @X0 0 tf ]
+"4 kernel.c
+[; ;kernel.c: 4: ready_queue_t r_queue;
+[c E37 0 1 2 .. ]
+[n E37 . READY WAITING RUNNING  ]
+[v F57 `(v ~T0 @X0 0 tf ]
+"16 ./types.h
+[; ;./types.h: 16: typedef struct hw_stack {
+[s S1 `uc 1 `uc 1 `uc 1 ]
+[n S1 hw_stack TOSL_REG TOSH_REG TOSU_REG ]
+"22
+[; ;./types.h: 22: typedef struct sw_stack {
+[s S2 `S1 -> 31 `i `uc 1 ]
+[n S2 sw_stack stack stack_size ]
+"27
+[; ;./types.h: 27: typedef struct tcb {
+[s S3 `uc 1 `E37 1 `*F57 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `S2 1 ]
+[n S3 tcb task_id task_state task_ptr task_delay task_priority W_REG STATUS_REG BSR_REG PRODL_REG PRODH_REG FSR0L_REG FSR0H_REG FSR1L_REG FSR1H_REG FSR2L_REG FSR2H_REG TABLAT_REG TBLPTRL_REG TBLPTRH_REG TBLPTRU_REG PCLATH_REG PCLATU_REG task_stack ]
+"57
+[; ;./types.h: 57: typedef struct ready_queue {
+[s S4 `S3 -> 4 `i `uc 1 `*S3 1 ]
+[n S4 ready_queue TASKS size task_running ]
+[v F6205 `(v ~T0 @X0 0 tf ]
+[v F6208 `(v ~T0 @X0 0 tf ]
+"18 ./kernel.h
+[; ;./kernel.h: 18: TASK idle();
+[v _idle `(v ~T0 @X0 0 e? ]
+[v F6215 `(v ~T0 @X0 0 tf ]
 "52 C:/Program Files/Microchip/MPLABX/v6.30/packs/Microchip/PIC18F-K_DFP/1.15.303/xc8\pic\include\proc/pic18f46k22.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.30/packs/Microchip/PIC18F-K_DFP/1.15.303/xc8\pic\include\proc/pic18f46k22.h: 52: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -761,75 +786,186 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.30/packs/Microchip/PIC18F-K_DFP/1.15.303/xc8\pic\include\proc/pic18f46k22.h: 17404: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "4 kernel.c
-[; ;kernel.c: 4: void os_delay(uint8_t time)
+[; ;kernel.c: 4: ready_queue_t r_queue;
+[v _r_queue `S4 ~T0 @X0 1 e ]
+"7
+[; ;kernel.c: 7: void os_delay(uint8_t time)
 [v _os_delay `(v ~T0 @X0 1 ef1`uc ]
-"5
-[; ;kernel.c: 5: {
+"8
+[; ;kernel.c: 8: {
 {
 [e :U _os_delay ]
-"4
-[; ;kernel.c: 4: void os_delay(uint8_t time)
-[v _time `uc ~T0 @X0 1 r1 ]
-"5
-[; ;kernel.c: 5: {
-[f ]
 "7
-[; ;kernel.c: 7: }
+[; ;kernel.c: 7: void os_delay(uint8_t time)
+[v _time `uc ~T0 @X0 1 r1 ]
+"8
+[; ;kernel.c: 8: {
+[f ]
+"10
+[; ;kernel.c: 10: }
 [e :UE 880 ]
 }
-"9
-[; ;kernel.c: 9: void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
-[v _os_create_task `(v ~T0 @X0 1 ef3`uc`*F6189`uc ]
-"10
-[; ;kernel.c: 10: {
+"12
+[; ;kernel.c: 12: void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
+[v _os_create_task `(v ~T0 @X0 1 ef3`uc`*F6205`uc ]
+"13
+[; ;kernel.c: 13: {
 {
 [e :U _os_create_task ]
-"9
-[; ;kernel.c: 9: void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
-[v _id `uc ~T0 @X0 1 r1 ]
-[v _func `*F6192 ~T0 @X0 1 r2 ]
-[v _prior `uc ~T0 @X0 1 r3 ]
-"10
-[; ;kernel.c: 10: {
-[f ]
 "12
-[; ;kernel.c: 12: }
+[; ;kernel.c: 12: void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
+[v _id `uc ~T0 @X0 1 r1 ]
+[v _func `*F6208 ~T0 @X0 1 r2 ]
+[v _prior `uc ~T0 @X0 1 r3 ]
+"13
+[; ;kernel.c: 13: {
+[f ]
+"14
+[; ;kernel.c: 14:     tcb_t new_task;
+[v _new_task `S3 ~T0 @X0 1 a ]
+"16
+[; ;kernel.c: 16:     new_task.task_id = id;
+[e = . _new_task 0 _id ]
+"17
+[; ;kernel.c: 17:     new_task.task_delay = 0;
+[e = . _new_task 3 -> -> 0 `i `uc ]
+"18
+[; ;kernel.c: 18:     new_task.task_priority = prior;
+[e = . _new_task 4 _prior ]
+"19
+[; ;kernel.c: 19:     new_task.task_ptr = func;
+[e = . _new_task 2 _func ]
+"20
+[; ;kernel.c: 20:     new_task.task_state = READY;
+[e = . _new_task 1 . `E37 0 ]
+"22
+[; ;kernel.c: 22:     new_task.BSR_REG = 0;
+[e = . _new_task 7 -> -> 0 `i `uc ]
+"23
+[; ;kernel.c: 23:     new_task.FSR0H_REG = 0;
+[e = . _new_task 11 -> -> 0 `i `uc ]
+"24
+[; ;kernel.c: 24:     new_task.FSR0L_REG = 0;
+[e = . _new_task 10 -> -> 0 `i `uc ]
+"25
+[; ;kernel.c: 25:     new_task.FSR1H_REG = 0;
+[e = . _new_task 13 -> -> 0 `i `uc ]
+"26
+[; ;kernel.c: 26:     new_task.FSR1L_REG = 0;
+[e = . _new_task 12 -> -> 0 `i `uc ]
+"27
+[; ;kernel.c: 27:     new_task.FSR2H_REG = 0;
+[e = . _new_task 15 -> -> 0 `i `uc ]
+"28
+[; ;kernel.c: 28:     new_task.FSR2L_REG = 0;
+[e = . _new_task 14 -> -> 0 `i `uc ]
+"29
+[; ;kernel.c: 29:     new_task.PCLATH_REG = 0;
+[e = . _new_task 20 -> -> 0 `i `uc ]
+"30
+[; ;kernel.c: 30:     new_task.PCLATU_REG = 0;
+[e = . _new_task 21 -> -> 0 `i `uc ]
+"31
+[; ;kernel.c: 31:     new_task.PRODH_REG = 0;
+[e = . _new_task 9 -> -> 0 `i `uc ]
+"32
+[; ;kernel.c: 32:     new_task.PRODL_REG = 0;
+[e = . _new_task 8 -> -> 0 `i `uc ]
+"33
+[; ;kernel.c: 33:     new_task.STATUS_REG = 0;
+[e = . _new_task 6 -> -> 0 `i `uc ]
+"34
+[; ;kernel.c: 34:     new_task.TABLAT_REG = 0;
+[e = . _new_task 16 -> -> 0 `i `uc ]
+"35
+[; ;kernel.c: 35:     new_task.TBLPTRH_REG = 0;
+[e = . _new_task 18 -> -> 0 `i `uc ]
+"36
+[; ;kernel.c: 36:     new_task.TBLPTRL_REG = 0;
+[e = . _new_task 17 -> -> 0 `i `uc ]
+"37
+[; ;kernel.c: 37:     new_task.TBLPTRU_REG = 0;
+[e = . _new_task 19 -> -> 0 `i `uc ]
+"38
+[; ;kernel.c: 38:     new_task.W_REG = 0;
+[e = . _new_task 5 -> -> 0 `i `uc ]
+"39
+[; ;kernel.c: 39:     new_task.task_stack.stack_size = 0;
+[e = . . _new_task 22 1 -> -> 0 `i `uc ]
+"42
+[; ;kernel.c: 42:     r_queue.TASKS[r_queue.size++] = new_task;
+[e = *U + &U . _r_queue 0 * -> ++ . _r_queue 1 -> -> 1 `i `uc `ux -> -> # *U &U . _r_queue 0 `ui `ux _new_task ]
+"43
+[; ;kernel.c: 43: }
 [e :UE 881 ]
 }
-"14
-[; ;kernel.c: 14: void os_yield()
+"45
+[; ;kernel.c: 45: void os_yield()
 [v _os_yield `(v ~T0 @X0 1 ef ]
-"15
-[; ;kernel.c: 15: {
+"46
+[; ;kernel.c: 46: {
 {
 [e :U _os_yield ]
 [f ]
-"17
-[; ;kernel.c: 17: }
+"48
+[; ;kernel.c: 48: }
 [e :UE 882 ]
 }
-"20
-[; ;kernel.c: 20: TASK idle()
+"50
+[; ;kernel.c: 50: void os_config()
+[v _os_config `(v ~T0 @X0 1 ef ]
+"51
+[; ;kernel.c: 51: {
+{
+[e :U _os_config ]
+[f ]
+"52
+[; ;kernel.c: 52:     r_queue.size = 0;
+[e = . _r_queue 1 -> -> 0 `i `uc ]
+"53
+[; ;kernel.c: 53:     r_queue.task_running = &r_queue.TASKS[0];
+[e = . _r_queue 2 &U *U + &U . _r_queue 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _r_queue 0 `ui `ux ]
+"56
+[; ;kernel.c: 56:     os_create_task(1, idle, 0);
+[e ( _os_create_task (3 , , -> -> 1 `i `uc -> &U _idle `*F6215 -> -> 0 `i `uc ]
+"57
+[; ;kernel.c: 57: }
+[e :UE 883 ]
+}
+"59
+[; ;kernel.c: 59: void os_start()
+[v _os_start `(v ~T0 @X0 1 ef ]
+"60
+[; ;kernel.c: 60: {
+{
+[e :U _os_start ]
+[f ]
+"62
+[; ;kernel.c: 62: }
+[e :UE 884 ]
+}
+"65
+[; ;kernel.c: 65: TASK idle()
 [v _idle `(v ~T0 @X0 1 ef ]
-"21
-[; ;kernel.c: 21: {
+"66
+[; ;kernel.c: 66: {
 {
 [e :U _idle ]
 [f ]
-"22
-[; ;kernel.c: 22:     while (1) {
-[e :U 885 ]
+"67
+[; ;kernel.c: 67:     while (1) {
+[e :U 887 ]
 {
-"23
-[; ;kernel.c: 23:         __asm("NOP");
+"68
+[; ;kernel.c: 68:         __asm("NOP");
 [; <" NOP ;# ">
-"24
-[; ;kernel.c: 24:     }
+"69
+[; ;kernel.c: 69:     }
 }
-[e :U 884 ]
-[e $U 885  ]
 [e :U 886 ]
-"25
-[; ;kernel.c: 25: }
-[e :UE 883 ]
+[e $U 887  ]
+[e :U 888 ]
+"70
+[; ;kernel.c: 70: }
+[e :UE 885 ]
 }

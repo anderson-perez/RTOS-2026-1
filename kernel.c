@@ -36,6 +36,7 @@ void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
     new_task.TBLPTRL_REG    = 0;
     new_task.TBLPTRU_REG    = 0;
     new_task.W_REG          = 0;
+    new_task.task_stack.stack_size = 0;
     
     // Insere nova tarefa na fila de aptos
     r_queue.TASKS[r_queue.size++] = new_task;

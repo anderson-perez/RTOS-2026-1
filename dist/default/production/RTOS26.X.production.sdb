@@ -3,6 +3,12 @@
 [d edition pro ]
 [d chip 18F46K22 ]
 [d frameptr 4065 ]
+"4 C:\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2026-1\RTOS26.X\kernel.c
+[e E37 . `uc
+READY 0
+WAITING 1
+RUNNING 2
+]
 "7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 "7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\aldiv.c
@@ -63,8 +69,19 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
+"12 C:\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2026-1\RTOS26.X\kernel.c
+[v _os_create_task os_create_task `(v  1 e 1 0 ]
+"65
+[v _idle idle `(v  1 e 1 0 ]
 "5 C:\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2026-1\RTOS26.X\main.c
 [v _main main `(i  1 e 2 0 ]
+[s S34 hw_stack 3 `uc 1 TOSL_REG 1 0 `uc 1 TOSH_REG 1 1 `uc 1 TOSU_REG 1 2 ]
+"4 C:\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2026-1\RTOS26.X\kernel.c
+[s S38 sw_stack 94 `[31]S34 1 stack 93 0 `uc 1 stack_size 1 93 ]
+[s S41 tcb 117 `uc 1 task_id 1 0 `E37 1 task_state 1 1 `*.37(v 1 task_ptr 2 2 `uc 1 task_delay 1 4 `uc 1 task_priority 1 5 `uc 1 W_REG 1 6 `uc 1 STATUS_REG 1 7 `uc 1 BSR_REG 1 8 `uc 1 PRODL_REG 1 9 `uc 1 PRODH_REG 1 10 `uc 1 FSR0L_REG 1 11 `uc 1 FSR0H_REG 1 12 `uc 1 FSR1L_REG 1 13 `uc 1 FSR1H_REG 1 14 `uc 1 FSR2L_REG 1 15 `uc 1 FSR2H_REG 1 16 `uc 1 TABLAT_REG 1 17 `uc 1 TBLPTRL_REG 1 18 `uc 1 TBLPTRH_REG 1 19 `uc 1 TBLPTRU_REG 1 20 `uc 1 PCLATH_REG 1 21 `uc 1 PCLATU_REG 1 22 `S38 1 task_stack 94 23 ]
+[s S65 ready_queue 471 `[4]S41 1 TASKS 468 0 `uc 1 size 1 468 `*.39S41 1 task_running 2 469 ]
+[v _r_queue r_queue `S65  1 e 471 0 ]
+"5 C:\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2026-1\RTOS26.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
 "12

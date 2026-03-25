@@ -1,0 +1,29 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"5 main.c
+[; ;main.c: 5: int main()
+[v _main `(i ~T0 @X0 1 ef ]
+"6
+[; ;main.c: 6: {
+{
+[e :U _main ]
+[f ]
+"7
+[; ;main.c: 7:     while (1) {
+[e :U 3 ]
+{
+"9
+[; ;main.c: 9:     }
+}
+[e :U 2 ]
+[e $U 3  ]
+[e :U 4 ]
+"11
+[; ;main.c: 11:     return 0;
+[e ) -> 0 `i ]
+[e $UE 1  ]
+"12
+[; ;main.c: 12: }
+[e :UE 1 ]
+}

@@ -14,9 +14,9 @@ typedef enum {READY = 0,
 typedef void (*f_ptr)(void);
 
 typedef struct hw_stack {
-    uint8_t TOSU_REG;
     uint8_t TOSL_REG;
     uint8_t TOSH_REG;
+    uint8_t TOSU_REG;    
 } hw_stack_t;
 
 typedef struct sw_stack {
@@ -36,6 +36,19 @@ typedef struct tcb {
     uint8_t BSR_REG;
     uint8_t PRODL_REG;
     uint8_t PRODH_REG;
+    uint8_t FSR0L_REG;
+    uint8_t FSR0H_REG;
+    uint8_t FSR1L_REG;
+    uint8_t FSR1H_REG;
+    uint8_t FSR2L_REG;
+    uint8_t FSR2H_REG;
+    uint8_t TABLAT_REG;
+    uint8_t TBLPTRL_REG;
+    uint8_t TBLPTRH_REG;
+    uint8_t TBLPTRU_REG;
+    uint8_t PCLATH_REG;
+    uint8_t PCLATU_REG; 
+    
     // Pilha de hardware
     sw_stack_t task_stack;
 } tcb_t;
@@ -43,7 +56,7 @@ typedef struct tcb {
 // Fila de aptos
 typedef struct ready_queue {
     tcb_t TASKS[MAX_USER_TASKS+1];
-    tcb_t size;
+    uint8_t size;
     tcb_t *task_running;
 } ready_queue_t;
 

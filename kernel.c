@@ -1,5 +1,8 @@
 #include "kernel.h"
 
+// Fila de aptos
+ready_queue_t r_queue;
+
 // Chamadas de sistema
 void os_delay(uint8_t time)
 {
@@ -8,10 +11,51 @@ void os_delay(uint8_t time)
 
 void os_create_task(uint8_t id, f_ptr func, uint8_t prior)
 {
+    tcb_t new_task;
     
+    new_task.task_id        = id;
+    new_task.task_delay     = 0;
+    new_task.task_priority  = prior;
+    new_task.task_ptr       = func;
+    new_task.task_state     = READY;
+    
+    new_task.BSR_REG        = 0;
+    new_task.FSR0H_REG      = 0;
+    new_task.FSR0L_REG      = 0;
+    new_task.FSR1H_REG      = 0;
+    new_task.FSR1L_REG      = 0;
+    new_task.FSR2H_REG      = 0;
+    new_task.FSR2L_REG      = 0;
+    new_task.PCLATH_REG     = 0;
+    new_task.PCLATU_REG     = 0;
+    new_task.PRODH_REG      = 0;
+    new_task.PRODL_REG      = 0;
+    new_task.STATUS_REG     = 0;
+    new_task.TABLAT_REG     = 0;
+    new_task.TBLPTRH_REG    = 0;
+    new_task.TBLPTRL_REG    = 0;
+    new_task.TBLPTRU_REG    = 0;
+    new_task.W_REG          = 0;
+    
+    // Insere nova tarefa na fila de aptos
+    r_queue.TASKS[r_queue.size++] = new_task;
 }
 
 void os_yield()
+{
+    
+}
+
+void os_config()
+{
+    r_queue.size            = 0;
+    r_queue.task_running    = &r_queue.TASKS[0];
+    
+    // Criar a tarefa idle
+    os_create_task(1, idle, 0);
+}
+
+void os_start()
 {
     
 }
